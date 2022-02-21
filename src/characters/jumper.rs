@@ -7,7 +7,7 @@ pub struct Jumper {
     pub is_jumping: bool,
 }
 
-pub fn jumper_jumps (
+pub fn jumper_jumps(
     keyboard_input: Res<Input<KeyCode>>,
     mut jumpers: Query<(&mut Jumper, &mut RigidBodyVelocityComponent)>,
 ) {
@@ -30,11 +30,7 @@ pub fn jump_reset(
     }
 }
 
-fn set_jumping_false_if_touching_floor(
-    entity: Entity,
-    jumper: &mut Jumper,
-    event: &ContactEvent,
-) {
+fn set_jumping_false_if_touching_floor(entity: Entity, jumper: &mut Jumper, event: &ContactEvent) {
     if let ContactEvent::Started(h1, h2) = event {
         if h1.entity() == entity || h2.entity() == entity {
             jumper.is_jumping = false;

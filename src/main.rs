@@ -14,8 +14,7 @@ fn main() {
 
     // add plugins
     // TODO: separate out into bundles
-    app
-        .add_plugins(DefaultPlugins)
+    app.add_plugins(DefaultPlugins)
         .add_plugin(CameraPlugin)
         .add_plugin(CharacterPlugin)
         .add_plugin(FloorPlugin)

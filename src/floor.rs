@@ -5,8 +5,7 @@ pub struct FloorPlugin;
 
 impl Plugin for FloorPlugin {
     fn build(&self, app: &mut App) {
-        app
-            .add_startup_stage("floor_setup", SystemStage::single(spawn_floor));
+        app.add_startup_stage("floor_setup", SystemStage::single(spawn_floor));
     }
 }
 

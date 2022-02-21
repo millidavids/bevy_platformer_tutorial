@@ -1,20 +1,15 @@
 use bevy::{
     app::App,
-    prelude::{OrthographicCameraBundle, Plugin, Commands},
-    render::camera::{
-        OrthographicProjection,
-        DepthCalculation,
-        ScalingMode
-    },
-    math::Vec3
+    math::Vec3,
+    prelude::{Commands, OrthographicCameraBundle, Plugin},
+    render::camera::{DepthCalculation, OrthographicProjection, ScalingMode},
 };
 
 pub struct CameraPlugin;
 
 impl Plugin for CameraPlugin {
     fn build(&self, app: &mut App) {
-        app
-            .add_startup_system(setup);
+        app.add_startup_system(setup);
     }
 }
 
@@ -33,6 +28,6 @@ fn new_camera_2d() -> OrthographicCameraBundle {
         ..Default::default()
     };
     camera.transform.scale = Vec3::new(10.0, 10.0, 1.0);
-    
+
     camera
 }

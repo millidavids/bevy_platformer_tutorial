@@ -1,7 +1,6 @@
+use super::jumper::*;
 use bevy::prelude::*;
 use bevy_rapier2d::prelude::*;
-use super::jumper::*;
-
 
 #[derive(Component)]
 struct Player;
@@ -10,7 +9,11 @@ pub fn spawn_player(mut commands: Commands) {
     let rigid_body = RigidBodyBundle {
         mass_properties: RigidBodyMassPropsFlags::ROTATION_LOCKED.into(),
         activation: RigidBodyActivation::cannot_sleep().into(),
-        ccd: RigidBodyCcd { ccd_enabled: true, ..Default::default() }.into(),
+        ccd: RigidBodyCcd {
+            ccd_enabled: true,
+            ..Default::default()
+        }
+        .into(),
         ..Default::default()
     };
     let collider = ColliderBundle {
@@ -18,7 +21,8 @@ pub fn spawn_player(mut commands: Commands) {
         flags: ColliderFlags {
             active_events: ActiveEvents::CONTACT_EVENTS,
             ..Default::default()
-        }.into(),
+        }
+        .into(),
         ..Default::default()
     };
     commands
@@ -37,5 +41,8 @@ pub fn spawn_player(mut commands: Commands) {
         .insert_bundle(collider)
         .insert(RigidBodyPositionSync::Discrete)
         .insert(Player)
-        .insert(Jumper { jump_impulse: 10.0, is_jumping: false });
+        .insert(Jumper {
+            jump_impulse: 10.0,
+            is_jumping: false,
+        });
 }
