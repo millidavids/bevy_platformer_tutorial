@@ -1,11 +1,11 @@
 mod camera;
-mod player;
+mod characters;
 mod floor;
 
 use bevy::prelude::*;
 use bevy_rapier2d::prelude::*;
 use camera::*;
-use player::PlayerPlugin;
+use characters::CharacterPlugin;
 use floor::FloorPlugin;
 
 fn main() {
@@ -17,7 +17,7 @@ fn main() {
     app
         .add_plugins(DefaultPlugins)
         .add_plugin(CameraPlugin)
-        .add_plugin(PlayerPlugin)
+        .add_plugin(CharacterPlugin)
         .add_plugin(FloorPlugin)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .insert_resource(WindowDescriptor {

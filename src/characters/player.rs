@@ -1,21 +1,12 @@
 use bevy::prelude::*;
 use bevy_rapier2d::prelude::*;
+use super::jumper::*;
 
-pub struct PlayerPlugin;
-impl Plugin for PlayerPlugin {
-    fn build(&self, app: &mut App) {
-        app
-            .add_startup_stage(
-                "player_setup",
-                SystemStage::single(spawn_player),
-            );
-    }
-}
 
 #[derive(Component)]
 struct Player;
 
-fn spawn_player(mut commands: Commands) {
+pub fn spawn_player(mut commands: Commands) {
     let rigid_body = RigidBodyBundle {
         mass_properties: RigidBodyMassPropsFlags::ROTATION_LOCKED.into(),
         activation: RigidBodyActivation::cannot_sleep().into(),
@@ -45,5 +36,6 @@ fn spawn_player(mut commands: Commands) {
         .insert_bundle(rigid_body)
         .insert_bundle(collider)
         .insert(RigidBodyPositionSync::Discrete)
-        .insert(Player);
+        .insert(Player)
+        .insert(Jumper { jump_impulse: 10.0, is_jumping: false });
 }
