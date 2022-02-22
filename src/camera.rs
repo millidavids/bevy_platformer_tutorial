@@ -1,23 +1,10 @@
 use bevy::{
-    app::App,
     math::Vec3,
-    prelude::{Commands, OrthographicCameraBundle, Plugin},
+    prelude::OrthographicCameraBundle,
     render::camera::{DepthCalculation, OrthographicProjection, ScalingMode},
 };
 
-pub struct CameraPlugin;
-
-impl Plugin for CameraPlugin {
-    fn build(&self, app: &mut App) {
-        app.add_startup_system(setup);
-    }
-}
-
-fn setup(mut commands: Commands) {
-    commands.spawn_bundle(new_camera_2d());
-}
-
-fn new_camera_2d() -> OrthographicCameraBundle {
+pub fn new_camera_2d() -> OrthographicCameraBundle {
     let far = 1000.0;
 
     let mut camera = OrthographicCameraBundle::new_2d();

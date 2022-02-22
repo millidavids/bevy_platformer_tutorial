@@ -1,12 +1,11 @@
-mod camera;
 mod characters;
-mod floor;
+mod map;
+pub mod camera;
 
 use bevy::prelude::*;
 use bevy_rapier2d::prelude::*;
-use camera::*;
 use characters::CharacterPlugin;
-use floor::FloorPlugin;
+use map::MapPlugin;
 
 fn main() {
     // initialize app object
@@ -15,9 +14,8 @@ fn main() {
     // add plugins
     // TODO: separate out into bundles
     app.add_plugins(DefaultPlugins)
-        .add_plugin(CameraPlugin)
         .add_plugin(CharacterPlugin)
-        .add_plugin(FloorPlugin)
+        .add_plugin(MapPlugin)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .insert_resource(WindowDescriptor {
             title: "Platformer!".to_string(),
